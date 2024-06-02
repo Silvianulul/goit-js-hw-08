@@ -591,7 +591,6 @@ const form = document.querySelector(".feedback-form");
 const emailInput = form.elements.email;
 const messageTextarea = form.elements.message;
 const LOCAL_STORAGE_KEY = "feedback-form-state";
-// Funcția pentru salvarea stării formularului
 const saveFormState = (0, _lodashThrottleDefault.default)(()=>{
     const formState = {
         email: emailInput.value,
@@ -599,7 +598,6 @@ const saveFormState = (0, _lodashThrottleDefault.default)(()=>{
     };
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formState));
 }, 500);
-// Funcția pentru încărcarea stării formularului
 const loadFormState = ()=>{
     const savedState = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (savedState) {
@@ -608,7 +606,6 @@ const loadFormState = ()=>{
         messageTextarea.value = message || "";
     }
 };
-// Funcția pentru gestionarea evenimentului de trimitere a formularului
 const handleSubmit = (event)=>{
     event.preventDefault();
     const formState = {
@@ -619,11 +616,8 @@ const handleSubmit = (event)=>{
     localStorage.removeItem(LOCAL_STORAGE_KEY);
     form.reset();
 };
-// Încărcați starea formularului la încărcarea paginii
 document.addEventListener("DOMContentLoaded", loadFormState);
-// Ascultă evenimentul de input și salvează starea formularului
 form.addEventListener("input", saveFormState);
-// Ascultă evenimentul de trimitere a formularului
 form.addEventListener("submit", handleSubmit);
 
 },{"lodash.throttle":"bGJVT","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bGJVT":[function(require,module,exports) {

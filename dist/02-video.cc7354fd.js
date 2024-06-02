@@ -592,17 +592,14 @@ var _lodashThrottleDefault = parcelHelpers.interopDefault(_lodashThrottle);
 const iframe = document.getElementById("vimeo-player");
 const player = new (0, _playerDefault.default)(iframe);
 const LOCAL_STORAGE_KEY = "videoplayer-current-time";
-// Când timpul de redare se schimbă, salvați-l în local storage, dar nu mai des decât o dată pe secundă
 const onTimeUpdate = (0, _lodashThrottleDefault.default)((data)=>{
     localStorage.setItem(LOCAL_STORAGE_KEY, data.seconds);
 }, 1000);
 player.on("timeupdate", onTimeUpdate);
-// La reîncărcarea paginii, setați timpul curent de redare la valoarea salvată în local storage
 const savedTime = localStorage.getItem(LOCAL_STORAGE_KEY);
 if (savedTime !== null) player.setCurrentTime(parseFloat(savedTime)).catch(function(error) {
     console.error(error);
 });
-// Puteți adăuga un mesaj pentru a verifica dacă scriptul funcționează corect
 player.on("play", function() {
     console.log("Played the video!");
 });

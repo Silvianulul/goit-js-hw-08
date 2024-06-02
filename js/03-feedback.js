@@ -5,7 +5,6 @@ const emailInput = form.elements.email;
 const messageTextarea = form.elements.message;
 const LOCAL_STORAGE_KEY = "feedback-form-state";
 
-// Funcția pentru salvarea stării formularului
 const saveFormState = throttle(() => {
   const formState = {
     email: emailInput.value,
@@ -14,7 +13,6 @@ const saveFormState = throttle(() => {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formState));
 }, 500);
 
-// Funcția pentru încărcarea stării formularului
 const loadFormState = () => {
   const savedState = localStorage.getItem(LOCAL_STORAGE_KEY);
   if (savedState) {
@@ -24,7 +22,6 @@ const loadFormState = () => {
   }
 };
 
-// Funcția pentru gestionarea evenimentului de trimitere a formularului
 const handleSubmit = (event) => {
   event.preventDefault();
   const formState = {
@@ -36,11 +33,8 @@ const handleSubmit = (event) => {
   form.reset();
 };
 
-// Încărcați starea formularului la încărcarea paginii
 document.addEventListener("DOMContentLoaded", loadFormState);
 
-// Ascultă evenimentul de input și salvează starea formularului
 form.addEventListener("input", saveFormState);
 
-// Ascultă evenimentul de trimitere a formularului
 form.addEventListener("submit", handleSubmit);
